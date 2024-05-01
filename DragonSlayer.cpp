@@ -5,6 +5,7 @@
 DragonSlayer::DragonSlayer(std::string name_, int hp, int armor_) : Character(hp, armor_, 4),
 name(name_)
 {
+    helpfulItems = makeHelpfulItems(2);
 }
 
 const std::string& DragonSlayer::getName()
