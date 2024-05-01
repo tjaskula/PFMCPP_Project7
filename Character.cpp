@@ -88,10 +88,15 @@ int Character::takeDamage(int damage)
 
 void Character::updateStats(int& initialStat, int& currentStat)
 {
-    // Boost stat by 10%, ensuring it's not less than the initial
-    int boostedStat = std::max(initialStat, (currentStat / 10) + currentStat);
-    currentStat = initialStat = boostedStat; // Update both current and initial
+    // stats are restored to their initial value if they are lower than it
+    if(currentStat < initialStat )
+    {
+        currentStat = initialStat;
+    }
 
+    // boost by 10% 
+    currentStat *= 1.1;
+    initialStat = currentStat;
 }
 
 void Character::attackInternal(Character& other)
