@@ -19,19 +19,18 @@ void DragonSlayer::attack(Character& other)
     std::cout << name << " is attacking " << other.getName() << " !!" << std::endl;
     if( auto* dragon = dynamic_cast<Dragon*>(&other) )
     {   
+        //DragonSlayers get a 10x boost when attacking dragons, from their attack item.
+        if (attackItem != nullptr)
+        {
+            //so they should USE their attack item before attacking the dragon... 
+            attackItem->use(this);
+            //note: items are single-use only, so you need to reset it after use.  
+            //look in the Character class for how the other item types are reset after use.
+            attackItem.reset();
+        }
+        
         while( dragon->getHP() > 0 )
         {
-            //DragonSlayers get a 10x boost when attacking dragons, from their attack item.
-
-            if (attackItem != nullptr)
-            {
-                //so they should USE their attack item before attacking the dragon... 
-                attackItem->use(this);
-                //note: items are single-use only, so you need to reset it after use.  
-                //look in the Character class for how the other item types are reset after use.
-                attackItem.reset();
-            }
-
             //note: they should only use the item if the dragon's hitpoints are > 0...
             
             dragon->takeDamage(attackDamage);
