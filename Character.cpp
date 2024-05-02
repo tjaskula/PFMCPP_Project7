@@ -117,3 +117,30 @@ void Character::attackInternal(Character& other)
         std::cout << getName() << " defeated " << other.getName() << " and leveled up!" << std::endl;        
     }
 }
+
+void Character::boostArmor( int amount )
+{
+    armor += amount;
+    std::cout << getName() << "'s armor level has been boosted to " << armor << std::endl;
+}
+
+void Character::boostHitPoints( int amount )
+{
+    hitPoints += amount;
+    std::cout << getName() << "'s hit point level has been boosted to " << hitPoints << std::endl;
+}
+
+void Character::boostAttackDamage( int amount )
+{
+    attackDamage += amount;
+    std::cout << getName() << "'s attack damage level has been boosted to " << attackDamage << std::endl;
+}
+
+void Character::printStats()
+{
+    std::cout << getName() << "'s stats: " << std::endl;
+    std::cout << getStats(); //make your getStats() use a function from the Utility.h
+
+    std::cout << std::endl;
+    std::cout << std::endl;
+}
